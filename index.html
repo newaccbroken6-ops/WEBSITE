@@ -1,0 +1,1330 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>🔥 LINUX - Free Fire Info & Region Check</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      
+      /* Default theme (red) */
+      body {
+        background: linear-gradient(-45deg, #0c0c0c, #1a1a2e, #16213e, #0f3460);
+        background-size: 400% 400%;
+        animation: gradient 15s ease infinite;
+        color: white;
+        min-height: 100vh;
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+        overflow-x: hidden;
+        position: relative;
+      }
+      
+      /* Theme styles - Red (default) */
+      .theme-red {
+        --primary-color: #ff3e3e;
+        --secondary-color: #ff6b6b;
+        --accent-color: #ff9999;
+        --background-gradient: linear-gradient(-45deg, #0c0c0c, #1a1a2e, #16213e, #0f3460);
+      }
+      
+      /* Theme styles - Blue */
+      .theme-blue {
+        --primary-color: #3e7dff;
+        --secondary-color: #6b9cff;
+        --accent-color: #99c9ff;
+        --background-gradient: linear-gradient(-45deg, #0c0c2c, #1a1a4e, #16215e, #0f3480);
+      }
+      
+      /* Theme styles - Green */
+      .theme-green {
+        --primary-color: #3eff3e;
+        --secondary-color: #6bff6b;
+        --accent-color: #99ff99;
+        --background-gradient: linear-gradient(-45deg, #0c2c0c, #1a4e1a, #165e16, #0f800f);
+      }
+      
+      /* Theme styles - Purple */
+      .theme-purple {
+        --primary-color: #b13eff;
+        --secondary-color: #c76bff;
+        --accent-color: #d999ff;
+        --background-gradient: linear-gradient(-45deg, #2c0c2c, #4e1a4e, #5e165e, #800f80);
+      }
+      
+      /* Apply theme variables */
+      body.theme-red {
+        background: var(--background-gradient);
+      }
+      
+      body.theme-blue {
+        background: var(--background-gradient);
+      }
+      
+      body.theme-green {
+        background: var(--background-gradient);
+      }
+      
+      body.theme-purple {
+        background: var(--background-gradient);
+      }
+      
+      @keyframes gradient {
+        0% {
+          background-position: 0% 50%;
+        }
+        50% {
+          background-position: 100% 50%;
+        }
+        100% {
+          background-position: 0% 50%;
+        }
+      }
+      .video-background {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        z-index: -2;
+        opacity: 0.3;
+      }
+      .overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.7);
+        z-index: -1;
+      }
+      .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 20px;
+        position: relative;
+        z-index: 1;
+      }
+      .welcome-screen {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(135deg, #0c0c0c, #1a1a2e, #16213e);
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        z-index: 1000;
+        transition: opacity 0.8s ease;
+      }
+      .welcome-content {
+        text-align: center;
+        animation: fadeInUp 1s ease;
+      }
+      .welcome-title {
+        font-size: 5rem;
+        font-weight: bold;
+        background: linear-gradient(45deg, var(--primary-color), var(--secondary-color), var(--accent-color));
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+        text-shadow: 0 0 50px rgba(255, 62, 62, 0.5);
+        margin-bottom: 20px;
+        animation: glow 2s ease-in-out infinite alternate;
+      }
+      
+      @keyframes glow {
+        from {
+          text-shadow: 0 0 20px rgba(255, 62, 62, 0.5);
+        }
+        to {
+          text-shadow: 0 0 30px rgba(255, 62, 62, 0.8),
+            0 0 40px rgba(255, 62, 62, 0.6);
+        }
+      }
+      
+      .welcome-subtitle {
+        color: var(--accent-color);
+        font-size: 1.5rem;
+        margin-bottom: 40px;
+        font-weight: 300;
+      }
+      
+      .start-btn {
+        background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+        color: white;
+        border: none;
+        padding: 20px 60px;
+        font-size: 1.3rem;
+        font-weight: bold;
+        border-radius: 50px;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        position: relative;
+        overflow: hidden;
+        box-shadow: 0 10px 30px rgba(255, 62, 62, 0.3);
+      }
+      .start-btn:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 15px 40px rgba(255, 62, 62, 0.5);
+        background: linear-gradient(135deg, #ff5555, #ff7b7b);
+      }
+      .start-btn::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(
+          90deg,
+          transparent,
+          rgba(255, 255, 255, 0.2),
+          transparent
+        );
+        transition: 0.5s;
+      }
+      .start-btn:hover::before {
+        left: 100%;
+      }
+      .main-content {
+        display: none;
+        opacity: 0;
+        transition: opacity 0.8s ease;
+      }
+      .header {
+        text-align: center;
+        padding: 50px 0;
+        background: rgba(255, 0, 0, 0.15);
+        border-radius: 20px;
+        margin-bottom: 30px;
+        border: 1px solid rgba(255, 0, 0, 0.3);
+        backdrop-filter: blur(10px);
+        position: relative;
+        overflow: hidden;
+      }
+      .header::before {
+        content: "";
+        position: absolute;
+        top: -50%;
+        left: -50%;
+        width: 200%;
+        height: 200%;
+        background: radial-gradient(
+          circle,
+          rgba(255, 0, 0, 0.1) 0%,
+          transparent 70%
+        );
+        animation: pulse 4s ease-in-out infinite;
+      }
+      @keyframes pulse {
+        0%,
+        100% {
+          transform: scale(1);
+          opacity: 0.5;
+        }
+        50% {
+          transform: scale(1.1);
+          opacity: 0.8;
+        }
+      }
+      .brand {
+        font-size: 4rem;
+        font-weight: bold;
+        background: linear-gradient(45deg, var(--primary-color), var(--secondary-color), var(--accent-color));
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+        text-shadow: 0 0 30px rgba(255, 62, 62, 0.5);
+        margin-bottom: 10px;
+        position: relative;
+      }
+      .tagline {
+        color: var(--accent-color);
+        font-size: 1.3rem;
+        margin-bottom: 20px;
+        font-weight: 300;
+      }
+      .tab-container {
+        display: flex;
+        justify-content: center;
+        margin-bottom: 30px;
+        gap: 20px;
+      }
+      .tab-btn {
+        background: rgba(255, 255, 255, 0.1);
+        border: none;
+        color: white;
+        padding: 15px 30px;
+        border-radius: 50px;
+        cursor: pointer;
+        font-size: 1.1rem;
+        font-weight: bold;
+        transition: all 0.3s ease;
+        border: 2px solid transparent;
+      }
+      .tab-btn.active {
+        background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+        border-color: var(--primary-color);
+        box-shadow: 0 5px 20px rgba(255, 62, 62, 0.3);
+      }
+      .tab-btn:hover:not(.active) {
+        background: rgba(255, 255, 255, 0.2);
+        border-color: rgba(255, 255, 255, 0.3);
+      }
+      .tab-content {
+        display: none;
+      }
+      .tab-content.active {
+        display: block;
+        animation: fadeIn 0.5s ease;
+      }
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+          transform: translateY(20px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+      @keyframes fadeInUp {
+        from {
+          opacity: 0;
+          transform: translateY(30px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+      .search-box {
+        background: rgba(255, 255, 255, 0.1);
+        padding: 40px;
+        border-radius: 20px;
+        margin: 30px 0;
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        backdrop-filter: blur(15px);
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+      }
+      .form-group {
+        margin: 25px 0;
+      }
+      .form-input {
+        width: 100%;
+        padding: 18px;
+        border: none;
+        border-radius: 12px;
+        background: rgba(255, 255, 255, 0.15);
+        color: white;
+        font-size: 16px;
+        border: 2px solid rgba(255, 255, 255, 0.3);
+        transition: all 0.3s ease;
+      }
+      .form-input:focus {
+        outline: none;
+        border-color: var(--primary-color);
+        box-shadow: 0 0 20px rgba(255, 62, 62, 0.4);
+        background: rgba(255, 255, 255, 0.2);
+        transform: translateY(-2px);
+      }
+      .form-input::placeholder {
+        color: rgba(255, 255, 255, 0.6);
+      }
+      .btn {
+        background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+        color: white;
+        padding: 18px 40px;
+        border: none;
+        border-radius: 12px;
+        cursor: pointer;
+        font-size: 18px;
+        font-weight: bold;
+        transition: all 0.3s ease;
+        width: 100%;
+        position: relative;
+        overflow: hidden;
+      }
+      .btn::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(
+          90deg,
+          transparent,
+          rgba(255, 255, 255, 0.2),
+          transparent
+        );
+        transition: 0.5s;
+      }
+      .btn:hover::before {
+        left: 100%;
+      }
+      .btn:hover {
+        background: linear-gradient(135deg, #ff5555, #ff7b7b);
+        transform: translateY(-3px);
+        box-shadow: 0 10px 25px rgba(255, 62, 62, 0.4);
+      }
+      .results {
+        display: none;
+        margin-top: 40px;
+      }
+      .card {
+        background: rgba(255, 255, 255, 0.1);
+        border-radius: 20px;
+        padding: 30px;
+        margin: 25px 0;
+        border: 1px solid rgba(255, 255, 255, 0.15);
+        backdrop-filter: blur(15px);
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        transition: transform 0.3s ease;
+      }
+      .card:hover {
+        transform: translateY(-5px);
+      }
+      .outfit-image {
+        max-width: 100%;
+        border-radius: 15px;
+        margin: 20px 0;
+        border: 3px solid #ff3e3e;
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+        transition: transform 0.3s ease;
+      }
+      .outfit-image:hover {
+        transform: scale(1.02);
+      }
+      .loading {
+        display: none;
+        text-align: center;
+        margin: 40px 0;
+      }
+      .spinner {
+        border: 4px solid rgba(255, 255, 255, 0.3);
+        border-radius: 50%;
+        border-top: 4px solid #ff3e3e;
+        width: 60px;
+        height: 60px;
+        animation: spin 1s linear infinite;
+        margin: 0 auto 25px;
+      }
+      @keyframes spin {
+        0% {
+          transform: rotate(0deg);
+        }
+        100% {
+          transform: rotate(360deg);
+        }
+      }
+      .error {
+        color: #ff6b6b;
+        background: rgba(255, 107, 107, 0.15);
+        padding: 20px;
+        border-radius: 12px;
+        margin: 15px 0;
+        border: 1px solid rgba(255, 107, 107, 0.3);
+        backdrop-filter: blur(10px);
+      }
+      .success {
+        color: #51cf66;
+        background: rgba(81, 207, 102, 0.15);
+        padding: 20px;
+        border-radius: 12px;
+        margin: 15px 0;
+        border: 1px solid rgba(81, 207, 102, 0.3);
+        backdrop-filter: blur(10px);
+      }
+      .info-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 20px;
+        margin: 25px 0;
+      }
+      .info-item {
+        background: rgba(255, 255, 255, 0.08);
+        padding: 20px;
+        border-radius: 12px;
+        border-left: 4px solid var(--primary-color);
+        transition: transform 0.3s ease;
+      }
+      .info-item:hover {
+        transform: translateX(5px);
+      }
+      .info-label {
+        color: var(--accent-color);
+        font-size: 0.95rem;
+        margin-bottom: 8px;
+        font-weight: 500;
+      }
+      .info-value {
+        color: white;
+        font-size: 1.2rem;
+        font-weight: bold;
+      }
+      .region-badge {
+        background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+        color: white;
+        padding: 10px 20px;
+        border-radius: 25px;
+        font-weight: bold;
+        font-size: 1.1rem;
+        display: inline-block;
+        margin-top: 10px;
+        box-shadow: 0 5px 15px rgba(255, 62, 62, 0.3);
+      }
+      .rank-badge {
+        background: linear-gradient(135deg, #ffd700, #ff6b00);
+        color: #000;
+        padding: 8px 15px;
+        border-radius: 25px;
+        font-weight: bold;
+        font-size: 0.95rem;
+        display: inline-block;
+        margin-top: 8px;
+        box-shadow: 0 3px 10px rgba(255, 215, 0, 0.3);
+      }
+      .section-title {
+        color: var(--primary-color);
+        margin: 25px 0 20px 0;
+        font-size: 1.5rem;
+        border-bottom: 3px solid rgba(255, 62, 62, 0.3);
+        padding-bottom: 12px;
+        text-align: center;
+        position: relative;
+      }
+      .section-title::after {
+        content: "";
+        position: absolute;
+        bottom: -3px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 100px;
+        height: 3px;
+        background: linear-gradient(90deg, transparent, #ff3e3e, transparent);
+      }
+      .stats-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+        gap: 20px;
+        margin: 20px 0;
+      }
+      .stat-card {
+        background: rgba(255, 255, 255, 0.08);
+        padding: 25px 15px;
+        border-radius: 15px;
+        text-align: center;
+        border: 1px solid rgba(255, 255, 255, 0.15);
+        transition: all 0.3s ease;
+        position: relative;
+        overflow: hidden;
+      }
+      .stat-card::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 3px;
+        background: linear-gradient(90deg, #ff3e3e, #ff6b6b);
+      }
+      .stat-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 10px 25px rgba(255, 62, 62, 0.2);
+      }
+      .stat-value {
+        font-size: 2.2rem;
+        font-weight: bold;
+        color: var(--primary-color);
+        margin: 15px 0;
+        text-shadow: 0 0 10px rgba(255, 62, 62, 0.3);
+      }
+      .stat-label {
+        color: var(--accent-color);
+        font-size: 0.95rem;
+        font-weight: 500;
+      }
+      .credit {
+        text-align: center;
+        margin-top: 40px;
+        color: rgba(255, 255, 255, 0.5);
+        font-size: 0.9rem;
+        padding: 20px;
+        border-top: 1px solid rgba(255, 255, 255, 0.1);
+      }
+      .time-info {
+        background: rgba(255, 255, 255, 0.05);
+        padding: 15px;
+        border-radius: 10px;
+        margin: 10px 0;
+        border-left: 3px solid var(--secondary-color);
+      }
+      .guild-leader {
+        background: linear-gradient(
+          135deg,
+          rgba(255, 62, 62, 0.1),
+          rgba(255, 107, 107, 0.1)
+        );
+        padding: 20px;
+        border-radius: 15px;
+        margin: 15px 0;
+        border: 1px solid rgba(255, 62, 62, 0.3);
+      }
+      .floating {
+        animation: floating 3s ease-in-out infinite;
+      }
+      @keyframes floating {
+        0%,
+        100% {
+          transform: translateY(0px);
+        }
+        50% {
+          transform: translateY(-10px);
+        }
+      }
+      .particles {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        pointer-events: none;
+        z-index: -1;
+      }
+      .particle {
+        position: absolute;
+        background: rgba(255, 62, 62, 0.3);
+        border-radius: 50%;
+        animation: float 6s infinite linear;
+      }
+      @keyframes float {
+        0% {
+          transform: translateY(100vh) translateX(0);
+        }
+        100% {
+          transform: translateY(-100px) translateX(100px);
+        }
+      }
+      
+      /* Color changer styles */
+      .color-changer {
+        position: fixed;
+        top: 20px;
+        right: 20px;
+        z-index: 1001;
+        display: flex;
+        gap: 10px;
+      }
+      
+      .color-option {
+        width: 30px;
+        height: 30px;
+        border-radius: 50%;
+        cursor: pointer;
+        border: 2px solid white;
+        transition: transform 0.2s ease;
+      }
+      
+      .color-option:hover {
+        transform: scale(1.2);
+      }
+      
+      .color-red { background-color: #ff3e3e; }
+      .color-blue { background-color: #3e7dff; }
+      .color-green { background-color: #3eff3e; }
+      .color-purple { background-color: #b13eff; }
+    </style>
+  </head>
+  <body class="theme-red">
+    <!-- Color Changer -->
+    <div class="color-changer">
+      <div class="color-option color-red" data-theme="red" title="Red Theme"></div>
+      <div class="color-option color-blue" data-theme="blue" title="Blue Theme"></div>
+      <div class="color-option color-green" data-theme="green" title="Green Theme"></div>
+      <div class="color-option color-purple" data-theme="purple" title="Purple Theme"></div>
+    </div>
+    <video class="video-background" autoplay muted loop>
+      <source
+        src="https://assets.mixkit.co/videos/preview/mixkit-fire-in-a-dark-background-42817-large.mp4"
+        type="video/mp4"
+      />
+    </video>
+    <div class="overlay"></div>
+    <div class="particles" id="particles"></div>
+
+    <!-- Welcome Screen -->
+    <div class="welcome-screen" id="welcomeScreen">
+      <div class="welcome-content">
+        <div class="welcome-title">🔥 LINUX</div>
+        <div class="welcome-subtitle">
+          Free Fire Account Information & Region Check
+        </div>
+        <button class="start-btn" onclick="startApp()">CLICK TO START</button>
+      </div>
+    </div>
+
+    <!-- Main Content -->
+    <div class="container main-content" id="mainContent">
+      <div class="header floating">
+        <div style="display: flex; align-items: center; justify-content: center; gap: 20px;">
+          <img src="logo.jpg" alt="Logo" style="height: 80px; border-radius: 50%; display: none;" id="logoImage">
+          <div class="brand">LINUX-INFO</div>
+        </div>
+        <div class="tagline">Free Fire Account Information & Region Check</div>
+      </div>
+
+      <div class="tab-container">
+        <button class="tab-btn active" onclick="switchTab('fullInfo')">
+          Full Info & Outfit
+        </button>
+        <button class="tab-btn" onclick="switchTab('regionCheck')">
+          Region Check
+        </button>
+      </div>
+
+      <!-- Full Info & Outfit Tab -->
+      <div class="tab-content active" id="fullInfoTab">
+        <div class="search-box">
+          <h3
+            style="
+              text-align: center;
+              margin-bottom: 25px;
+              color: #ff9999;
+              font-size: 1.4rem;
+            "
+          >
+            Enter Player UID
+          </h3>
+          <form id="searchForm">
+            <div class="form-group">
+              <input
+                type="text"
+                class="form-input"
+                id="uid"
+                placeholder="Enter Free Fire UID (e.g., 2450675101)"
+                required
+              />
+            </div>
+            <button type="submit" class="btn">Get Account Info & Outfit</button>
+          </form>
+        </div>
+
+        <div class="loading" id="loading">
+          <div class="spinner"></div>
+          <p style="color: #ff9999; font-size: 1.1rem">
+            Fetching account information and generating outfit...
+          </p>
+        </div>
+
+        <div class="results" id="results">
+          <div class="card" id="accountInfo">
+            <h3
+              style="
+                color: #ff3e3e;
+                text-align: center;
+                margin-bottom: 25px;
+                font-size: 1.8rem;
+              "
+            >
+              🎮 ACCOUNT INFORMATION
+            </h3>
+            <div id="infoContent"></div>
+          </div>
+
+          <div class="card" id="outfitDisplay">
+            <h3
+              style="
+                color: #ff3e3e;
+                text-align: center;
+                margin-bottom: 25px;
+                font-size: 1.8rem;
+              "
+            >
+              👕 CHARACTER OUTFIT
+            </h3>
+            <div id="outfitContent"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Region Check Tab -->
+      <div class="tab-content" id="regionCheckTab">
+        <div class="search-box">
+          <h3
+            style="
+              text-align: center;
+              margin-bottom: 25px;
+              color: #ff9999;
+              font-size: 1.4rem;
+            "
+          >
+            Check Player Region
+          </h3>
+          <form id="regionForm">
+            <div class="form-group">
+              <input
+                type="text"
+                class="form-input"
+                id="regionUid"
+                placeholder="Enter Free Fire UID (e.g., 2450675101)"
+                required
+              />
+            </div>
+            <button type="submit" class="btn">Check Region</button>
+          </form>
+        </div>
+
+        <div class="loading" id="regionLoading">
+          <div class="spinner"></div>
+          <p style="color: #ff9999; font-size: 1.1rem">
+            Checking player region...
+          </p>
+        </div>
+
+        <div class="results" id="regionResults">
+          <div class="card" id="regionInfo">
+            <h3
+              style="
+                color: #ff3e3e;
+                text-align: center;
+                margin-bottom: 25px;
+                font-size: 1.8rem;
+              "
+            >
+              🌍 REGION INFORMATION
+            </h3>
+            <div id="regionContent"></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="credit">
+        Powered by LINUX API • 
+        <a href="https://www.instagram.com/youssef_el797" target="_blank" style="color: #ff9999; text-decoration: none;">
+          Follow me on Instagram: @youssef_el797
+        </a>
+      </div>
+    </div>
+
+    <script>
+      // Color changer functionality
+      document.querySelectorAll('.color-option').forEach(option => {
+        option.addEventListener('click', function() {
+          const theme = this.getAttribute('data-theme');
+          
+          // Remove all theme classes
+          document.body.classList.remove('theme-red', 'theme-blue', 'theme-green', 'theme-purple');
+          
+          // Add selected theme class
+          document.body.classList.add(`theme-${theme}`);
+          
+          // Save preference to localStorage
+          localStorage.setItem('selectedTheme', theme);
+        });
+      });
+      
+      // Load saved theme preference
+      window.addEventListener('DOMContentLoaded', function() {
+        const savedTheme = localStorage.getItem('selectedTheme') || 'red';
+        document.body.classList.remove('theme-red', 'theme-blue', 'theme-green', 'theme-purple');
+        document.body.classList.add(`theme-${savedTheme}`);
+      });
+      
+      // Start app function
+      function startApp() {
+        const welcomeScreen = document.getElementById("welcomeScreen");
+        const mainContent = document.getElementById("mainContent");
+
+        welcomeScreen.style.opacity = "0";
+        setTimeout(() => {
+          welcomeScreen.style.display = "none";
+          mainContent.style.display = "block";
+          setTimeout(() => {
+            mainContent.style.opacity = "1";
+          }, 50);
+        }, 800);
+
+        createParticles();
+      }
+
+      // Tab switching function
+      function switchTab(tabName) {
+        // Hide all tabs
+        document.querySelectorAll(".tab-content").forEach((tab) => {
+          tab.classList.remove("active");
+        });
+
+        // Remove active class from all buttons
+        document.querySelectorAll(".tab-btn").forEach((btn) => {
+          btn.classList.remove("active");
+        });
+
+        // Show selected tab and activate button
+        document.getElementById(tabName + "Tab").classList.add("active");
+        event.target.classList.add("active");
+
+        // Clear previous results
+        if (tabName === "fullInfo") {
+          document.getElementById("results").style.display = "none";
+          document.getElementById("infoContent").innerHTML = "";
+          document.getElementById("outfitContent").innerHTML = "";
+        } else {
+          document.getElementById("regionResults").style.display = "none";
+          document.getElementById("regionContent").innerHTML = "";
+        }
+      }
+
+      // Create floating particles
+      function createParticles() {
+        const particles = document.getElementById("particles");
+        const particleCount = 20;
+
+        for (let i = 0; i < particleCount; i++) {
+          const particle = document.createElement("div");
+          particle.className = "particle";
+
+          // Random properties
+          const size = Math.random() * 5 + 2;
+          const left = Math.random() * 100;
+          const animationDuration = Math.random() * 10 + 10;
+          const animationDelay = Math.random() * 5;
+
+          particle.style.width = `${size}px`;
+          particle.style.height = `${size}px`;
+          particle.style.left = `${left}%`;
+          particle.style.animationDuration = `${animationDuration}s`;
+          particle.style.animationDelay = `${animationDelay}s`;
+
+          particles.appendChild(particle);
+        }
+      }
+
+      // Format timestamp to readable date
+      function formatTimestamp(timestamp) {
+        if (!timestamp) return "Unknown";
+        const date = new Date(parseInt(timestamp) * 1000);
+        return date.toLocaleDateString("en-US", {
+          year: "numeric",
+          month: "short",
+          day: "numeric",
+          hour: "2-digit",
+          minute: "2-digit",
+        });
+      }
+
+      // Calculate days ago
+      function getDaysAgo(timestamp) {
+        if (!timestamp) return "Unknown";
+        const created = new Date(parseInt(timestamp) * 1000);
+        const now = new Date();
+        const diffTime = Math.abs(now - created);
+        const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+        return `${diffDays} days ago`;
+      }
+
+      // Full Info Form Handler
+      document
+        .getElementById("searchForm")
+        .addEventListener("submit", async function (e) {
+          e.preventDefault();
+          const uid = document.getElementById("uid").value.trim();
+          if (!uid) return;
+
+          console.log('Fetching account info for UID:', uid);
+          document.getElementById("loading").style.display = "block";
+          document.getElementById("results").style.display = "none";
+          document.getElementById("infoContent").innerHTML = "";
+          document.getElementById("outfitContent").innerHTML = "";
+
+          try {
+            // First get account info
+            const response = await fetch(`/api/accinfo?uid=${uid}`);
+            console.log('Response status:', response.status);
+            const data = await response.json();
+            console.log('Received data:', data);
+
+            document.getElementById("loading").style.display = "none";
+            document.getElementById("results").style.display = "block";
+
+            if (data.basicInfo) {
+              const basicInfo = data.basicInfo;
+              const profileInfo = data.profileInfo || {};
+              const socialInfo = data.socialInfo || {};
+              const clanInfo = data.clanBasicInfo || {};
+              const petInfo = data.petInfo || {};
+              const creditInfo = data.creditScoreInfo || {};
+              const captainInfo = data.captainBasicInfo || {};
+
+              // Calculate ranks using fixed calculation
+              const brRank = calculateBRRank(basicInfo.rankingPoints);
+              const csRank = calculateCSRank(basicInfo.csRankingPoints);
+              const captainBRRank = calculateBRRank(captainInfo.rankingPoints);
+              const captainCSRank = calculateCSRank(
+                captainInfo.csRankingPoints
+              );
+
+              // Display account info
+              document.getElementById("infoContent").innerHTML = `
+                            <div class="success">
+                                <strong>✅ PLAYER FOUND!</strong>
+                            </div>
+                            
+                            <div class="section-title">👤 Player Information</div>
+                            <div class="info-grid">
+                                <div class="info-item">
+                                    <div class="info-label">Player Name</div>
+                                    <div class="info-value">${escapeHtml(
+                                      basicInfo.nickname || "N/A"
+                                    )}</div>
+                                </div>
+                                <div class="info-item">
+                                    <div class="info-label">UID</div>
+                                    <div class="info-value">${
+                                      basicInfo.accountId || uid
+                                    }</div>
+                                </div>
+                                <div class="info-item">
+                                    <div class="info-label">Region</div>
+                                    <div class="info-value">${
+                                      basicInfo.region || "N/A"
+                                    }</div>
+                                    <div class="region-badge">${
+                                      basicInfo.region || "Unknown"
+                                    }</div>
+                                </div>
+                                <div class="info-item">
+                                    <div class="info-label">Level</div>
+                                    <div class="info-value">${
+                                      basicInfo.level || "0"
+                                    }</div>
+                                </div>
+                            </div>
+
+                            <div class="time-info">
+                                <div class="info-grid">
+                                    <div class="info-item">
+                                        <div class="info-label">Account Created</div>
+                                        <div class="info-value">${formatTimestamp(
+                                          basicInfo.createAt
+                                        )}</div>
+                                        <div class="info-label">${getDaysAgo(
+                                          basicInfo.createAt
+                                        )}</div>
+                                    </div>
+                                    <div class="info-item">
+                                        <div class="info-label">Last Login</div>
+                                        <div class="info-value">${formatTimestamp(
+                                          basicInfo.lastLoginAt
+                                        )}</div>
+                                        <div class="info-label">Recently</div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="section-title">🎯 Rank Information</div>
+                            <div class="info-grid">
+                                <div class="info-item">
+                                    <div class="info-label">BR Rank</div>
+                                    <div class="info-value">${brRank}</div>
+                                    <div class="info-label">Points: ${formatNumber(
+                                      basicInfo.rankingPoints || 0
+                                    )}</div>
+                                </div>
+                                <div class="info-item">
+                                    <div class="info-label">CS Rank</div>
+                                    <div class="info-value">${csRank}</div>
+                                    <div class="info-label">Total Stars: ${
+                                      basicInfo.csRankingPoints || 0
+                                    }</div>
+                                </div>
+                            </div>
+
+                            <div class="section-title">🏰 Guild Information</div>
+                            <div class="info-grid">
+                                <div class="info-item">
+                                    <div class="info-label">Guild Name</div>
+                                    <div class="info-value">${escapeHtml(
+                                      clanInfo.clanName || "No Guild"
+                                    )}</div>
+                                </div>
+                                <div class="info-item">
+                                    <div class="info-label">Guild Level</div>
+                                    <div class="info-value">${
+                                      clanInfo.clanLevel || "0"
+                                    }</div>
+                                </div>
+                                <div class="info-item">
+                                    <div class="info-label">Members</div>
+                                    <div class="info-value">${
+                                      clanInfo.memberNum || "0"
+                                    }/${clanInfo.capacity || "0"}</div>
+                                </div>
+                            </div>
+
+                            ${
+                              captainInfo.nickname
+                                ? `
+                                <div class="guild-leader">
+                                    <div class="section-title">👑 Guild Leader</div>
+                                    <div class="info-grid">
+                                        <div class="info-item">
+                                            <div class="info-label">Leader Name</div>
+                                            <div class="info-value">${escapeHtml(
+                                              captainInfo.nickname
+                                            )}</div>
+                                        </div>
+                                        <div class="info-item">
+                                            <div class="info-label">Leader UID</div>
+                                            <div class="info-value">${
+                                              captainInfo.accountId
+                                            }</div>
+                                        </div>
+                                        <div class="info-item">
+                                            <div class="info-label">Leader Level</div>
+                                            <div class="info-value">${
+                                              captainInfo.level || "0"
+                                            }</div>
+                                        </div>
+                                        <div class="info-item">
+                                            <div class="info-label">Leader BR Rank</div>
+                                            <div class="info-value">${captainBRRank}</div>
+                                        </div>
+                                        <div class="info-item">
+                                            <div class="info-label">Leader CS Rank</div>
+                                            <div class="info-value">${captainCSRank}</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            `
+                                : ""
+                            }
+
+                            <div class="section-title">📊 Statistics</div>
+                            <div class="stats-grid">
+                                <div class="stat-card">
+                                    <div class="stat-label">Likes</div>
+                                    <div class="stat-value">${formatNumber(
+                                      basicInfo.liked || 0
+                                    )}</div>
+                                </div>
+                                <div class="stat-card">
+                                    <div class="stat-label">Experience</div>
+                                    <div class="stat-value">${formatNumber(
+                                      basicInfo.exp || 0
+                                    )}</div>
+                                </div>
+                                <div class="stat-card">
+                                    <div class="stat-label">Honor Score</div>
+                                    <div class="stat-value">${
+                                      creditInfo.creditScore || "100"
+                                    }</div>
+                                </div>
+                                <div class="stat-card">
+                                    <div class="stat-label">Pet Level</div>
+                                    <div class="stat-value">${
+                                      petInfo.level || "0"
+                                    }</div>
+                                </div>
+                            </div>
+
+                            ${
+                              socialInfo.signature
+                                ? `
+                                <div class="section-title">💬 Signature</div>
+                                <div class="info-item">
+                                    <div class="info-value" style="font-style: italic; text-align: center;">"${escapeHtml(
+                                      socialInfo.signature
+                                    )}"</div>
+                                </div>
+                            `
+                                : ""
+                            }
+                        `;
+
+              // Display outfit image
+              document.getElementById("outfitContent").innerHTML = `
+                            <div style="text-align: center;">
+                                <img src="/api/outfit-image?uid=${uid}" alt="Character Outfit" class="outfit-image" onerror="this.style.display='none'">
+                                <p style="color: #ff9999; margin-top: 20px; font-size: 1.1rem;">🎨 Character outfit generated successfully!</p>
+                                <p style="color: #666; font-size: 0.9rem;">If outfit doesn't load, the player might have hidden their information.</p>
+                            </div>
+                        `;
+            } else {
+              document.getElementById("infoContent").innerHTML = `
+                            <div class="error">
+                                ❌ Error: ${
+                                  data.message ||
+                                  "Failed to fetch account information"
+                                }
+                            </div>
+                        `;
+            }
+          } catch (error) {
+            document.getElementById("loading").style.display = "none";
+            document.getElementById("infoContent").innerHTML = `
+                        <div class="error">
+                            🌐 Network Error: ${error.message}
+                        </div>
+                    `;
+          }
+        });
+
+      // Region Check Form Handler
+      document
+        .getElementById("regionForm")
+        .addEventListener("submit", async function (e) {
+          e.preventDefault();
+          const uid = document.getElementById("regionUid").value.trim();
+          if (!uid) return;
+
+          document.getElementById("regionLoading").style.display = "block";
+          document.getElementById("regionResults").style.display = "none";
+          document.getElementById("regionContent").innerHTML = "";
+
+          try {
+            const response = await fetch(`/api/region?uid=${uid}`);
+            const data = await response.json();
+
+            document.getElementById("regionLoading").style.display = "none";
+            document.getElementById("regionResults").style.display = "block";
+
+            if (data.uid || data.region) {
+              document.getElementById("regionContent").innerHTML = `
+                            <div class="success">
+                                <strong>✅ REGION FOUND!</strong>
+                            </div>
+                            
+                            <div style="text-align: center; padding: 30px;">
+                                <div class="info-grid">
+                                    <div class="info-item">
+                                        <div class="info-label">Player UID</div>
+                                        <div class="info-value" style="font-size: 1.4rem;">${
+                                          data.uid
+                                        }</div>
+                                    </div>
+                                    <div class="info-item">
+                                        <div class="info-label">Player Name</div>
+                                        <div class="info-value" style="font-size: 1.4rem;">${escapeHtml(
+                                          data.nickname
+                                        )}</div>
+                                    </div>
+                                    <div class="info-item">
+                                        <div class="info-label">Region</div>
+                                        <div class="info-value" style="font-size: 1.4rem;">${
+                                          data.region
+                                        }</div>
+                                        <div class="region-badge" style="font-size: 1.2rem; padding: 12px 25px;">${
+                                          data.region
+                                        }</div>
+                                    </div>
+                                </div>
+                                
+                                <div style="margin-top: 30px;">
+                                    <div style="font-size: 1.1rem; color: #ff9999; margin-bottom: 15px;">
+                                        🎮 Player Region Information
+                                    </div>
+                                    <div style="background: rgba(0, 180, 219, 0.1); padding: 20px; border-radius: 15px; border: 1px solid rgba(0, 180, 219, 0.3);">
+                                        <p style="margin: 10px 0;">Player <strong>${escapeHtml(
+                                          data.nickname
+                                        )}</strong> is registered in the <strong>${
+                data.region
+              }</strong> region.</p>
+                                        <p style="margin: 10px 0;">UID: <strong>${
+                                          data.uid
+                                        }</strong></p>
+                                    </div>
+                                </div>
+                            </div>
+                        `;
+            } else {
+              document.getElementById("regionContent").innerHTML = `
+                            <div class="error">
+                                ❌ Error: ${
+                                  data.error ||
+                                  "Failed to fetch region information"
+                                }
+                            </div>
+                        `;
+            }
+          } catch (error) {
+            document.getElementById("regionLoading").style.display = "none";
+            document.getElementById("regionContent").innerHTML = `
+                        <div class="error">
+                            🌐 Network Error: ${error.message}
+                        </div>
+                    `;
+          }
+        });
+
+      // Helper functions
+      function escapeHtml(text) {
+        const div = document.createElement("div");
+        div.textContent = text;
+        return div.innerHTML;
+      }
+
+      function formatNumber(num) {
+        return parseInt(num || 0).toLocaleString();
+      }
+
+      // Fixed CS Rank calculation - stars continue without reset
+      function calculateCSRank(stars) {
+        stars = parseInt(stars) || 0;
+
+        if (stars >= 187) return `Elite Master – ${stars - 87 + 1}★`;
+        else if (stars >= 137) return `Master – ${stars - 87 + 1}★`;
+        else if (stars >= 112) return `Elite Heroic – ${stars - 87 + 1}★`;
+        else if (stars >= 87) return `Heroic – ${stars - 87 + 1}★`;
+        else if (stars >= 82) return `Diamond V – ${stars - 82 + 1}★`;
+        else if (stars >= 77) return `Diamond IV – ${stars - 77 + 1}★`;
+        else if (stars >= 72) return `Diamond III – ${stars - 72 + 1}★`;
+        else if (stars >= 67) return `Diamond II – ${stars - 67 + 1}★`;
+        else if (stars >= 62) return `Diamond I – ${stars - 62 + 1}★`;
+        else if (stars >= 57) return `Platinum V – ${stars - 57 + 1}★`;
+        else if (stars >= 52) return `Platinum IV – ${stars - 52 + 1}★`;
+        else if (stars >= 47) return `Platinum III – ${stars - 47 + 1}★`;
+        else if (stars >= 42) return `Platinum II – ${stars - 42 + 1}★`;
+        else if (stars >= 37) return `Platinum I – ${stars - 37 + 1}★`;
+        else if (stars >= 33) return `Gold IV – ${stars - 33 + 1}★`;
+        else if (stars >= 29) return `Gold III – ${stars - 29 + 1}★`;
+        else if (stars >= 25) return `Gold II – ${stars - 25 + 1}★`;
+        else if (stars >= 21) return `Gold I – ${stars - 21 + 1}★`;
+        else if (stars >= 17) return `Silver III – ${stars - 17 + 1}★`;
+        else if (stars >= 13) return `Silver II – ${stars - 13 + 1}★`;
+        else if (stars >= 9) return `Silver I – ${stars - 9 + 1}★`;
+        else if (stars >= 6) return `Bronze III – ${stars - 6 + 1}★`;
+        else if (stars >= 3) return `Bronze II – ${stars - 3 + 1}★`;
+        else if (stars >= 0) return `Bronze I – ${stars + 1}★`;
+        else return "Unranked";
+      }
+
+      function calculateBRRank(points) {
+        points = parseInt(points) || 0;
+        if (points >= 10000) return "Elite Master V";
+        else if (points >= 9000) return "Elite Master IV";
+        else if (points >= 8000) return "Elite Master III";
+        else if (points >= 7100) return "Master II";
+        else if (points >= 6300) return "Master I";
+        else if (points >= 5500) return "Elite Heroic V";
+        else if (points >= 4900) return "Elite Heroic IV";
+        else if (points >= 4300) return "Elite Heroic III";
+        else if (points >= 3800) return "Heroic II";
+        else if (points >= 3500) return "Heroic I";
+        else if (points >= 2750) return "Diamond";
+        else if (points >= 2000) return "Platinum";
+        else if (points >= 1600) return "Gold";
+        else if (points >= 1300) return "Silver";
+        else if (points >= 1000) return "Bronze";
+        else return "Unranked";
+      }
+    </script>
+  </body>
+</html>
