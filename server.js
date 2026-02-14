@@ -19,7 +19,7 @@ app.get('/api/accinfo', async (req, res) => {
     }
     
     console.log(`Fetching account info for UID: ${uid}`);
-    const response = await axios.get(`https://danger-info-alpha.vercel.app/accinfo?uid=${uid}&key=DANGERxINFO`);
+    const response = await axios.get(`https://api-info-for-banner.vercel.app/info?uid={uid}&region={region}`);
     console.log(`Received response for UID: ${uid}`, response.status);
     res.json(response.data);
   } catch (error) {
@@ -41,7 +41,7 @@ app.get('/api/region', async (req, res) => {
     }
     
     console.log(`Fetching region info for UID: ${uid}`);
-    const response = await axios.get(`https://danger-info-alpha.vercel.app/region?uid=${uid}&key=DANGERxINFO`);
+    const response = await axios.get(`https://api-info-for-banner.vercel.app/info?uid={uid}&region={region}`);
     console.log(`Received response for UID: ${uid}`, response.status);
     res.json(response.data);
   } catch (error) {
@@ -62,7 +62,7 @@ app.get('/api/outfit-image', async (req, res) => {
       return res.status(400).json({ error: 'UID is required' });
     }
     
-    const response = await axios.get(`https://danger-info-alpha.vercel.app/outfit-image?uid=${uid}&key=DANGER-OUTFIT`, {
+    const response = await axios.get(`https://api-info-for-banner.vercel.app/info?uid={uid}&region={region}`, {
       responseType: 'stream'
     });
     
@@ -82,4 +82,5 @@ app.get('*', (req, res) => {
 
 app.listen(PORT, () => {
   console.log(`Server is running on http://localhost:${PORT}`);
+
 });
